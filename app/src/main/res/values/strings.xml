@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Controle de Vendas</string>
+    <string name="clientes">Clientes</string>
+    <string name="novo_cliente">Novo cliente</string>
+    <string name="registrar_cliente">Registrar cliente</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="registrar">Registrar</string>
+    <string name="nomeList">Nome:</string>
+    <string name="telefoneList">Telefone:</string>
+    <string name="nomeExemplo">Cliente da Silva</string>
+    <string name="telefoneExemplo">(034) 98848 9490</string>
+    <string name="opcoesCliente">Opções do cliente</string>
+    <string name="editar_cliente">Editar Cliente</string>
+    <string name="atualizar">Atualizar</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.cliente.ui.ListClienteFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="60dp"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <include
+                        android:id="@+id/fragmentTitle"
+                        layout="@layout/component_fragment_title"
+                        app:title="@{@string/clientes}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonAddClient"
+                        android:layout_width="155dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="#5f8829"
+                        android:text="@string/novo_cliente"
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/round_add_circle_24"
+                        app:iconGravity="textStart"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragmentTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewClients"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/component_item_client"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

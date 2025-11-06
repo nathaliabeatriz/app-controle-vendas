@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/navigation/nav_graph.xml -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_list_clients">
+
+    <fragment
+        android:id="@+id/navigation_list_products"
+        android:name="com.example.controledevendas.features.cliente.ui.fragments.ListClienteFragment"
+        android:label="fragment_list_products"
+        tools:layout="@layout/fragment_list_clients" />
+
+    <fragment
+        android:id="@+id/navigation_list_clients"
+        android:name="com.example.controledevendas.features.cliente.ui.fragments.ListClienteFragment"
+        android:label="fragment_list_clients"
+        tools:layout="@layout/fragment_list_clients">
+
+        <action
+            android:id="@+id/action_list_clients_to_add_client"
+            app:destination="@id/navigation_add_client"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_client"
+        android:name="com.example.controledevendas.features.cliente.ui.fragments.AddClienteFragment"
+        android:label="fragment_add_client"
+        tools:layout="@layout/fragment_add_client">
+            <argument
+                android:name="idCliente"
+                app:argType="long"/>
+    </fragment>
+
+
+
+    <!--    <fragment-->
+<!--        android:id="@+id/navigation_vendas"-->
+<!--        android:name="com.example.controledevendas.ui.vendas.VendasFragment"-->
+<!--        android:label="fragment_vendas"-->
+<!--        tools:layout="@layout/fragment_vendas" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_produtos"-->
+<!--        android:name="com.example.controledevendas.ui.produtos.ProdutosFragment"-->
+<!--        android:label="fragment_produtos"-->
+<!--        tools:layout="@layout/fragment_produtos" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_clientes"-->
+<!--        android:name="com.example.controledevendas.ui.clientes.ClientesFragment"-->
+<!--        android:label="fragment_clientes"-->
+<!--        tools:layout="@layout/fragment_clientes" />-->
+
+</navigation>
