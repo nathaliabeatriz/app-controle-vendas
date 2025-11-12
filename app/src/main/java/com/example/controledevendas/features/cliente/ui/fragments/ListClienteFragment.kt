@@ -6,15 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.controledevendas.R
-import com.example.controledevendas.databinding.FragmentListClientsBinding
+import com.example.controledevendas.databinding.ClienteFragmentListBinding
 import com.example.controledevendas.features.cliente.ui.ClienteAdapter
 import com.example.controledevendas.features.cliente.ui.ClienteViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,13 +22,13 @@ import kotlin.getValue
 
 @AndroidEntryPoint
 class ListClienteFragment: Fragment() {
-    private val viewModel: ClienteViewModel by activityViewModels()
-    private var _binding: FragmentListClientsBinding? = null
+    private val viewModel: ClienteViewModel by viewModels()
+    private var _binding: ClienteFragmentListBinding? = null
     private val binding get() = _binding!!
     private lateinit var clienteAdapter: ClienteAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_clients, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.cliente_fragment_list, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }

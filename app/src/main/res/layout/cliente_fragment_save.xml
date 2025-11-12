@@ -18,7 +18,7 @@
 
             <include
                 android:id="@+id/include_title"
-                layout="@layout/component_fragment_title"
+                layout="@layout/activity_main_component_title"
                 app:title="@{@string/registrar_cliente}" />
 
         </com.google.android.material.appbar.AppBarLayout>

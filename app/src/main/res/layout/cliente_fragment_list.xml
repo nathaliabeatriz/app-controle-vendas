@@ -28,12 +28,12 @@
 
                     <include
                         android:id="@+id/fragmentTitle"
-                        layout="@layout/component_fragment_title"
+                        layout="@layout/activity_main_component_title"
                         app:title="@{@string/clientes}" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/buttonAddClient"
-                        android:layout_width="155dp"
+                        android:layout_width="165dp"
                         android:layout_height="45dp"
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/component_item_client"
+            tools:listitem="@layout/cliente_component_item"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

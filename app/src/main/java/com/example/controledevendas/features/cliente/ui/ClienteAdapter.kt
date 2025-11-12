@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
-import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.controledevendas.databinding.ComponentItemClientBinding
+import com.example.controledevendas.databinding.ClienteComponentItemBinding
 import com.example.controledevendas.features.cliente.data.Cliente
 import com.example.controledevendas.R
 
@@ -17,7 +16,7 @@ class ClienteAdapter(private val onClienteClicked: ((Cliente) -> Unit)? = null,
     private val onDeleteClicked: ((Cliente) -> Unit),
     private val onEditClicked: ((Cliente) -> Unit)):
     ListAdapter<Cliente, ClienteAdapter.ClienteViewHolder>(ClienteDiffCallback()){
-    class ClienteViewHolder(private val binding: ComponentItemClientBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ClienteViewHolder(private val binding: ClienteComponentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cliente: Cliente, clickListener: ((Cliente) -> Unit)?, onDelete: (Cliente) -> Unit, onEdit: (Cliente) -> Unit) {
             binding.cliente = cliente
 
@@ -61,7 +60,7 @@ class ClienteAdapter(private val onClienteClicked: ((Cliente) -> Unit)? = null,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClienteViewHolder {
         // Infla o layout usando o Data Binding
-        val binding = ComponentItemClientBinding.inflate(
+        val binding = ClienteComponentItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
