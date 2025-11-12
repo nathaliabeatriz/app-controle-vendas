@@ -6,8 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.controledevendas.features.cliente.data.Cliente
 import com.example.controledevendas.features.cliente.data.ClienteDao
+import com.example.controledevendas.features.produto.data.Produto
+import com.example.controledevendas.features.produto.data.ProdutoDao
 
-@Database(entities = [Cliente::class], version = 1, exportSchema = false)
+@Database(entities = [Cliente::class, Produto::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun clienteDao(): ClienteDao
+    abstract fun produtoDao(): ProdutoDao
 }

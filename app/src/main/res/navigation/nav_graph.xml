@@ -4,19 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_list_clients">
+    app:startDestination="@id/navigation_list_products">
 
     <fragment
         android:id="@+id/navigation_list_products"
-        android:name="com.example.controledevendas.features.cliente.ui.fragments.ListClienteFragment"
+        android:name="com.example.controledevendas.features.produto.ui.fragments.ListProdutoFragment"
         android:label="fragment_list_products"
-        tools:layout="@layout/fragment_list_clients" />
+        tools:layout="@layout/produto_fragment_list">
+        <action
+            android:id="@+id/action_list_products_to_save_product"
+            app:destination="@id/navigation_save_product"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_list_clients"
         android:name="com.example.controledevendas.features.cliente.ui.fragments.ListClienteFragment"
         android:label="fragment_list_clients"
-        tools:layout="@layout/fragment_list_clients">
+        tools:layout="@layout/cliente_fragment_list">
 
         <action
             android:id="@+id/action_list_clients_to_add_client"
@@ -25,12 +29,22 @@
 
     <fragment
         android:id="@+id/navigation_add_client"
-        android:name="com.example.controledevendas.features.cliente.ui.fragments.AddClienteFragment"
+        android:name="com.example.controledevendas.features.cliente.ui.fragments.SaveClienteFragment"
         android:label="fragment_add_client"
-        tools:layout="@layout/fragment_add_client">
+        tools:layout="@layout/cliente_fragment_save">
             <argument
                 android:name="idCliente"
                 app:argType="long"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_save_product"
+        android:name="com.example.controledevendas.features.produto.ui.fragments.SaveProdutoFragment"
+        android:label="fragment_save_product"
+        tools:layout="@layout/produto_fragment_save">
+        <argument
+            android:name="idProduto"
+            app:argType="long"/>
     </fragment>
 
 

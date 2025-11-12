@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.controledevendas.core.data.AppDatabase
 import com.example.controledevendas.features.cliente.data.ClienteDao
 import com.example.controledevendas.features.cliente.data.ClienteRepository
+import com.example.controledevendas.features.produto.data.ProdutoDao
+import com.example.controledevendas.features.produto.data.ProdutoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +24,9 @@ object AppModule {
             context,
             AppDatabase::class.java,
             "controle_de_vendas_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
     @Provides
     @Singleton
@@ -33,6 +37,16 @@ object AppModule {
     @Singleton
     fun provideClienteRepository(clienteDao: ClienteDao): ClienteRepository {
         return ClienteRepository(clienteDao)
+    }
+    @Provides
+    @Singleton
+    fun provideProdutoDao(database: AppDatabase): ProdutoDao {
+        return database.produtoDao()
+    }
+    @Provides
+    @Singleton
+    fun provideProdutoRepository(produtoDao: ProdutoDao, @ApplicationContext context: Context): ProdutoRepository {
+        return ProdutoRepository(produtoDao, context)
     }
 
 }

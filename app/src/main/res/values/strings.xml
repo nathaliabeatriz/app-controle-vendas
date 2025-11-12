@@ -13,4 +13,15 @@
     <string name="opcoesCliente">Opções do cliente</string>
     <string name="editar_cliente">Editar Cliente</string>
     <string name="atualizar">Atualizar</string>
+    <string name="meus_produtos">Meus produtos</string>
+    <string name="novo_produto">Novo produto</string>
+    <string name="produto_exemplo">Perfume Boticário</string>
+    <string name="descricao_exemplo">75 ml / O Boticário</string>
+    <string name="preco_exemplo">R$ 120,00</string>
+    <string name="formato_preco">R$ %.2f</string>
+    <string name="registrar_produto">Registrar produto</string>
+    <string name="preco">Preço (R$)</string>
+    <string name="descricao">Descrição</string>
+    <string name="editar_produto">Editar produto</string>
+    <string name="selecionar_foto">Selecionar foto</string>
 </resources>
