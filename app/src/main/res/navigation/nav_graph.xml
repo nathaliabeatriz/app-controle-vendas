@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_list_products_to_save_product"
             app:destination="@id/navigation_save_product"/>
+
+        <action
+            android:id="@+id/action_list_products_to_save_entrada"
+            app:destination="@id/navigation_save_entrada"/>
     </fragment>
 
     <fragment
@@ -45,6 +49,23 @@
         <argument
             android:name="idProduto"
             app:argType="long"/>
+
+        <action
+            android:id="@+id/action_save_product_to_save_entrada"
+            app:destination="@id/navigation_save_entrada"
+
+            app:popUpTo="@id/navigation_list_products"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_save_entrada"
+        android:name="com.example.controledevendas.features.movimentacao.ui.fragments.SaveEntradaFragment"
+        android:label="fragment_save_entrada"
+        tools:layout="@layout/movimentacao_fragment_save_entrada">
+        <argument
+            android:name="idProduto"
+            app:argType="long" />
     </fragment>
 
 

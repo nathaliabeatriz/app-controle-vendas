@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.controledevendas.core.data.AppDatabase
 import com.example.controledevendas.features.cliente.data.ClienteDao
 import com.example.controledevendas.features.cliente.data.ClienteRepository
+import com.example.controledevendas.features.movimentacao.data.MovimentacaoDao
+import com.example.controledevendas.features.movimentacao.data.MovimentacaoRepository
 import com.example.controledevendas.features.produto.data.ProdutoDao
 import com.example.controledevendas.features.produto.data.ProdutoRepository
 import dagger.Module
@@ -48,5 +50,14 @@ object AppModule {
     fun provideProdutoRepository(produtoDao: ProdutoDao, @ApplicationContext context: Context): ProdutoRepository {
         return ProdutoRepository(produtoDao, context)
     }
-
+    @Provides
+    @Singleton
+    fun provideMovimentacaoDao(database: AppDatabase): MovimentacaoDao {
+        return database.movimentacaoDao()
+    }
+    @Provides
+    @Singleton
+    fun provideMovimentacaoRepository(movimentacaoDao: MovimentacaoDao): MovimentacaoRepository {
+        return MovimentacaoRepository(movimentacaoDao)
+    }
 }

@@ -24,4 +24,10 @@
     <string name="descricao">Descrição</string>
     <string name="editar_produto">Editar produto</string>
     <string name="selecionar_foto">Selecionar foto</string>
+    <string name="qtd_exemplo">0 unidades</string>
+    <string name="registrar_entrada">Registrar entrada</string>
+    <string name="quantidade_itens">Quantidade de itens</string>
+    <string name="data_entrada">Data de entrada</string>
+    <string name="custo_unidade">Custo por unidade</string>
+    <string name="opcoes_produto">Opções do produto</string>
 </resources>

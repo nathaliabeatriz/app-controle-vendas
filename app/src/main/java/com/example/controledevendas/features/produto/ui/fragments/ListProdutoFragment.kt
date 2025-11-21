@@ -64,6 +64,12 @@ class ListProdutoFragment: Fragment() {
                     idProduto = produto.idProduto
                 )
                 findNavController().navigate(action)
+            },
+            onUpdateEstoqueClicked = { produto ->
+                val action = ListProdutoFragmentDirections.actionListProductsToSaveEntrada(
+                    idProduto = produto.idProduto
+                )
+                findNavController().navigate(action)
             }
         )
     }
@@ -77,7 +83,7 @@ class ListProdutoFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                viewModel.allProdutos.collect { allProdutos ->
+                viewModel.produtoComMovimentacoes.collect { allProdutos ->
                     produtoAdapter.submitList(allProdutos)
                 }
             }

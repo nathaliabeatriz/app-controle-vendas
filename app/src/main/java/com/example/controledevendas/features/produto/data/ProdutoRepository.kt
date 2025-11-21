@@ -6,6 +6,7 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import com.example.controledevendas.core.data.relations.ProdutoMovimentacao
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -16,9 +17,10 @@ import javax.inject.Inject
 class ProdutoRepository @Inject constructor(private val produtoDao: ProdutoDao,
                                             @ApplicationContext private val context: Context) {
     val allProdutos: Flow<List<Produto>> = produtoDao.getAllProdutos()
+    val movimentacoesByProduto: Flow<List<ProdutoMovimentacao?>> = produtoDao.getMovimentacoesByProduto()
 
-    suspend fun insert(produto: Produto){
-        produtoDao.insert(produto)
+    suspend fun insert(produto: Produto): Long{
+        return produtoDao.insert(produto)
     }
 
     suspend fun delete(produto: Produto){

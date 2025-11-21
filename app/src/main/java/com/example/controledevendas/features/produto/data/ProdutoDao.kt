@@ -5,13 +5,15 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
+import com.example.controledevendas.core.data.relations.ProdutoMovimentacao
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProdutoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(produto: Produto)
+    suspend fun insert(produto: Produto): Long
 
     @Delete
     suspend fun delete(produto: Produto)
@@ -24,4 +26,8 @@ interface ProdutoDao {
 
     @Query("SELECT * FROM produtos WHERE idProduto = :id")
     fun getProdutoById(id: Long): Flow<Produto?>
+
+    @Transaction
+    @Query("SELECT * FROM produtos")
+    fun getMovimentacoesByProduto(): Flow<List<ProdutoMovimentacao?>>
 }

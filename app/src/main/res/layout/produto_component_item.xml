@@ -68,6 +68,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewLabelNome"
                     android:textSize="16sp"/>
 
+                <TextView
+                    android:id="@+id/textViewQtd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/qtd_exemplo"
+                    android:textSize="16sp"/>
+
             </LinearLayout>
 
             <ImageButton
@@ -77,7 +84,7 @@
                 app:layout_constraintWidth_percent="0.1"
                 android:scaleType="centerInside"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/opcoesCliente"
+                android:contentDescription="@string/opcoes_produto"
                 android:src="@drawable/icon_menu_element"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

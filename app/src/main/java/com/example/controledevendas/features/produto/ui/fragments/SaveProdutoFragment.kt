@@ -24,6 +24,10 @@ import android.Manifest
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.core.content.FileProvider
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 import java.io.File
 import java.math.BigDecimal
 import java.text.NumberFormat
@@ -46,7 +50,7 @@ class SaveProdutoFragment : Fragment(){
             Glide.with(this)
                 .load(imagemUri)
                 .placeholder(R.drawable.ic_placeholder)
-                .into(binding.imagePreview) // (o ID do seu ImageView)
+                .into(binding.imagePreview) // (o ID do ImageView)
 
             viewModel.setImagemSelecionada(imagemUri)
         }
@@ -57,8 +61,6 @@ class SaveProdutoFragment : Fragment(){
     ) { success: Boolean ->
         // O callback da câmera só diz se foi sucesso (true) ou cancelado (false)
         if (success) {
-            // A foto JÁ FOI SALVA na 'cameraImageUri' que criamos.
-            // Apenas a usamos para mostrar e passar ao ViewModel.
             cameraImageUri?.let {
                 binding.imagePreview.setImageURI(it)
                 viewModel.setImagemSelecionada(it)
@@ -87,8 +89,8 @@ class SaveProdutoFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadProduto(args.idProduto)
         addPriceMask()
-        insertProductListener()
         setupObservers()
+        insertProductListener()
     }
 
     override fun onDestroyView() {
@@ -98,28 +100,42 @@ class SaveProdutoFragment : Fragment(){
 
     // como a interface carrega mais rápido que uma consulta no banco deve existir um observador para atualizar os campos de produto
     private fun setupObservers() {
-        viewModel.produto.observe(viewLifecycleOwner) { produto ->
-            produto?.let {
-                // Se o produto não for nulo, preenche os campos da UI
-                binding.editTextName.setText(it.nome)
-                val locale = Locale("pt", "BR")
-                val currencyFormat = NumberFormat.getCurrencyInstance(locale)
-                val formattedPreco = currencyFormat.format(it.preco)
-                binding.editTextPreco.setText(formattedPreco)
-                binding.editTextDescricao.setText(it.descricao)
-                if(it.urlImg != null){
-                    val context = binding.root.context
-                    val file = File(context.filesDir, it.urlImg)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.produto.collect { produto ->
+                        produto?.let {
+                            // Se o produto não for nulo, preenche os campos da UI
+                            binding.editTextName.setText(it.nome)
+                            val locale = Locale("pt", "BR")
+                            val currencyFormat = NumberFormat.getCurrencyInstance(locale)
+                            val formattedPreco = currencyFormat.format(it.preco)
+                            binding.editTextPreco.setText(formattedPreco)
+                            binding.editTextDescricao.setText(it.descricao)
+                            if (it.urlImg != null) {
+                                val context = binding.root.context
+                                val file = File(context.filesDir, it.urlImg)
 
-                    Glide.with(context)
-                        .load(file) // Carrega o ARQUIVO
-                        .placeholder(R.drawable.ic_placeholder)
-                        .into(binding.imagePreview)
+                                Glide.with(context)
+                                    .load(file) // Carrega o ARQUIVO
+                                    .placeholder(R.drawable.ic_placeholder)
+                                    .into(binding.imagePreview)
+                            }
+
+                            // Altera o texto do título e do botão para o modo de edição
+                            binding.includeTitle.title = getString(R.string.editar_produto)
+                            binding.buttonAddClient.text = getString(R.string.atualizar)
+                        }
+                    }
                 }
 
-                // Altera o texto do título e do botão para o modo de edição
-                binding.includeTitle.title = getString(R.string.editar_produto)
-                binding.buttonAddClient.text = getString(R.string.atualizar)
+                launch {
+                    viewModel.savedStatus.collect { saved ->
+                        if (saved) {
+                            showChooseRegistrarMovimDialog()
+                        }
+                    }
+                }
             }
         }
     }
@@ -135,16 +151,41 @@ class SaveProdutoFragment : Fragment(){
             }
             else{
                 viewModel.saveProduto(nome, preco, descricao)
-                findNavController().popBackStack()
             }
         }
-
         binding.buttonSelecionarFoto.setOnClickListener {
-            showChooseDialog()
+            showChooseImageDialog()
         }
     }
 
-    private fun showChooseDialog() {
+    private fun showChooseRegistrarMovimDialog(){
+        val options = arrayOf("Sim", "Não")
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("Deseja adicionar uma entrada para este produto?")
+            .setItems(options) { dialog, which ->
+                when (which) {
+                    0 -> {
+                        val action = SaveProdutoFragmentDirections.actionSaveProductToSaveEntrada(
+                            idProduto = viewModel.produto.value!!.idProduto
+                        )
+                        findNavController().navigate(action)
+                    }
+                    1 -> {
+                        dialog.cancel()
+                        findNavController().popBackStack()
+                        viewModel.navigationConcluded()
+                    }
+                }
+            }
+            .setOnCancelListener{
+                findNavController().popBackStack()
+                viewModel.navigationConcluded()
+            }
+            .show()
+    }
+
+    private fun showChooseImageDialog() {
         val opcoes = arrayOf("Tirar Foto", "Escolher da Galeria")
 
         AlertDialog.Builder(requireContext())
@@ -230,5 +271,4 @@ class SaveProdutoFragment : Fragment(){
             }
         })
     }
-
 }
