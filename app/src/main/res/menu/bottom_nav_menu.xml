@@ -11,7 +11,7 @@
         android:title="Clientes" />
 
     <item
-        android:id="@+id/navigation_sales"
+        android:id="@+id/navigation_make_sale"
         android:icon="@drawable/icon_sale"
         android:title="Vendas" />
 

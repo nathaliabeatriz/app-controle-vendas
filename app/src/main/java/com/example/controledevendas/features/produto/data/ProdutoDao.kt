@@ -28,6 +28,6 @@ interface ProdutoDao {
     fun getProdutoById(id: Long): Flow<Produto?>
 
     @Transaction
-    @Query("SELECT * FROM produtos")
+    @Query("SELECT * FROM produtos ORDER BY nome ASC")
     fun getMovimentacoesByProduto(): Flow<List<ProdutoMovimentacao?>>
 }

@@ -30,4 +30,12 @@
     <string name="data_entrada">Data de entrada</string>
     <string name="custo_unidade">Custo por unidade</string>
     <string name="opcoes_produto">Opções do produto</string>
+    <string name="registrar_venda">Registrar venda</string>
+    <string name="selecione_cliente">Selecione um cliente ou continue:</string>
+    <string name="criar_cliente">Criar novo cliente</string>
+    <string name="continuar">Continuar</string>
+    <string name="selecione_produtos">Selecione os produtos e quantidades:</string>
+    <string name="retornar">Retornar</string>
+    <string name="total">Total: </string>
+    <string name="total_exemplo">R$ 0,00</string>
 </resources>

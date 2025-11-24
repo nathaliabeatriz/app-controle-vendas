@@ -9,6 +9,8 @@ import com.example.controledevendas.features.movimentacao.data.MovimentacaoDao
 import com.example.controledevendas.features.movimentacao.data.MovimentacaoRepository
 import com.example.controledevendas.features.produto.data.ProdutoDao
 import com.example.controledevendas.features.produto.data.ProdutoRepository
+import com.example.controledevendas.features.venda.data.VendaDao
+import com.example.controledevendas.features.venda.data.VendaRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,5 +61,15 @@ object AppModule {
     @Singleton
     fun provideMovimentacaoRepository(movimentacaoDao: MovimentacaoDao): MovimentacaoRepository {
         return MovimentacaoRepository(movimentacaoDao)
+    }
+    @Provides
+    @Singleton
+    fun provideVendaDao(database: AppDatabase): VendaDao {
+        return database.vendaDao()
+    }
+    @Provides
+    @Singleton
+    fun provideVendaRepository(vendaDao: VendaDao): VendaRepository {
+        return VendaRepository(vendaDao)
     }
 }

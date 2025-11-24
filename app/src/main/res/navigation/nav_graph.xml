@@ -68,24 +68,26 @@
             app:argType="long" />
     </fragment>
 
+    <navigation
+        android:id="@+id/navigation_make_sale"
+        app:startDestination="@id/navigation_venda_select_client">
 
+        <fragment
+            android:id="@+id/navigation_venda_select_client"
+            android:name="com.example.controledevendas.features.venda.ui.fragments.SelecionarClienteVendaFragment"
+            android:label="fragment_venda_select_client"
+            tools:layout="@layout/venda_fragment_selecionar_cliente">
+            <action
+                android:id="@+id/action_venda_select_client_to_venda_select_product"
+                app:destination="@id/navigation_venda_select_product"/>
+        </fragment>
 
-    <!--    <fragment-->
-<!--        android:id="@+id/navigation_vendas"-->
-<!--        android:name="com.example.controledevendas.ui.vendas.VendasFragment"-->
-<!--        android:label="fragment_vendas"-->
-<!--        tools:layout="@layout/fragment_vendas" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/navigation_produtos"-->
-<!--        android:name="com.example.controledevendas.ui.produtos.ProdutosFragment"-->
-<!--        android:label="fragment_produtos"-->
-<!--        tools:layout="@layout/fragment_produtos" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/navigation_clientes"-->
-<!--        android:name="com.example.controledevendas.ui.clientes.ClientesFragment"-->
-<!--        android:label="fragment_clientes"-->
-<!--        tools:layout="@layout/fragment_clientes" />-->
+        <fragment
+            android:id="@+id/navigation_venda_select_product"
+            android:name="com.example.controledevendas.features.venda.ui.fragments.SelecionarProdutosVendaFragment"
+            android:label="fragment_venda_select_product"
+            tools:layout="@layout/venda_fragment_selecionar_produtos">
+        </fragment>
+    </navigation>
 
 </navigation>
