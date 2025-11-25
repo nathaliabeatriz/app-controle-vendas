@@ -24,5 +24,5 @@ data class Venda(
     val idCliente: Long?,
     val dataVenda: Date,
     val valorTotal: Double,
-    val desconto: Double
+    val valorItens: Double
 )

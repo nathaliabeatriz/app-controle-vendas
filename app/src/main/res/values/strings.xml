@@ -38,4 +38,8 @@
     <string name="retornar">Retornar</string>
     <string name="total">Total: </string>
     <string name="total_exemplo">R$ 0,00</string>
+    <string name="informacoes_venda">Informações sobre a venda e pagamento:</string>
+    <string name="data_venda">Data de venda</string>
+    <string name="desconto">Aplicar desconto</string>
+    <string name="confirmar_venda">Confirmar Venda</string>
 </resources>

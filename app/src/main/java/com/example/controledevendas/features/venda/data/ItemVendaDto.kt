@@ -1,4 +1,4 @@
-package com.example.controledevendas.features.itemVenda.data
+package com.example.controledevendas.features.venda.data
 
 import com.example.controledevendas.core.data.relations.ProdutoMovimentacao
 

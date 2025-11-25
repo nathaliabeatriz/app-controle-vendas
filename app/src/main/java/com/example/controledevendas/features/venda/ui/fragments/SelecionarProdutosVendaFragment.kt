@@ -10,6 +10,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.controledevendas.R
 import com.example.controledevendas.databinding.VendaFragmentSelecionarProdutosBinding
@@ -74,13 +75,20 @@ class SelecionarProdutosVendaFragment: Fragment() {
                         binding.textViewTotal.text = formattedPreco
                     }
                 }
+                launch {
+                    viewModel.continuarVenda.collect { flag ->
+                        binding.buttonContinue.isEnabled = flag
+                        binding.buttonContinue.alpha = if (flag) 1.0f else 0.5f
+                    }
+                }
             }
         }
     }
 
     private fun insertVendaListeners(){
         binding.buttonContinue.setOnClickListener {
-
+            val action = SelecionarProdutosVendaFragmentDirections.actionVendaSelectProductToVendaInfoPagamento()
+            findNavController().navigate(action)
         }
     }
 }

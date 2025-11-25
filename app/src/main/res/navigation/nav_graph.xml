@@ -87,6 +87,23 @@
             android:name="com.example.controledevendas.features.venda.ui.fragments.SelecionarProdutosVendaFragment"
             android:label="fragment_venda_select_product"
             tools:layout="@layout/venda_fragment_selecionar_produtos">
+            <action
+                android:id="@+id/action_venda_select_product_to_venda_info_pagamento"
+                app:destination="@id/navigation_venda_info_pagamento"/>
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_venda_info_pagamento"
+            android:name="com.example.controledevendas.features.venda.ui.fragments.InfoPagamentoVendaFragment"
+            android:label="fragment_venda_info_pagamento"
+            tools:layout="@layout/venda_fragment_info_pagamento">
+
+            <action
+                android:id="@+id/action_venda_info_pagamento_to_navigation_list_products"
+                app:destination="@id/navigation_list_products"
+
+                app:popUpTo="@id/navigation_list_products"
+                app:popUpToInclusive="false"/>
         </fragment>
     </navigation>
 

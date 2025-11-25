@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy
 @Dao
 interface VendaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(venda: Venda)
+    suspend fun insert(venda: Venda): Long
 
     @Delete
     suspend fun delete(venda: Venda)

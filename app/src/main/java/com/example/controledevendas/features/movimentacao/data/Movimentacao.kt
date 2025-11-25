@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.controledevendas.features.produto.data.Produto
+import com.example.controledevendas.features.venda.data.Venda
 import java.util.Date
 
 @Entity(tableName = "movimentacoes", foreignKeys = [
@@ -13,9 +14,15 @@ import java.util.Date
         parentColumns = ["idProduto"],
         childColumns = ["idProduto"],
         onDelete = ForeignKey.SET_NULL
+    ),
+    ForeignKey(
+        entity = Venda::class,
+        parentColumns = ["idVenda"],
+        childColumns = ["idVenda"],
+        onDelete = ForeignKey.SET_NULL
     )
 ],
-    indices = [Index(value = ["idProduto"])]
+    indices = [Index(value = ["idProduto"]), Index(value = ["idVenda"])]
 )
 
 data class Movimentacao(
@@ -23,6 +30,7 @@ data class Movimentacao(
     val idMovimentacao: Long = 0,
     val movimento: Int,
     val dataMovimentacao: Date,
-    val custoUnidade: Double,
-    val idProduto: Long?,
+    val custoUnidade: Double? = null,
+    val idProduto: Long? = null,
+    val idVenda: Long? = null
 )

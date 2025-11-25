@@ -15,7 +15,7 @@ import com.example.controledevendas.features.produto.data.ProdutoDao
 import com.example.controledevendas.features.venda.data.Venda
 import com.example.controledevendas.features.venda.data.VendaDao
 
-@Database(entities = [Cliente::class, Produto::class, Movimentacao::class, Venda::class], version = 4, exportSchema = false)
+@Database(entities = [Cliente::class, Produto::class, Movimentacao::class, Venda::class], version = 5, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun clienteDao(): ClienteDao

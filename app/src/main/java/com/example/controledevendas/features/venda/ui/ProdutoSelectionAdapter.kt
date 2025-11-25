@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.controledevendas.R
 import com.example.controledevendas.databinding.VendaComponentSelecaoProdutoBinding
-import com.example.controledevendas.features.itemVenda.data.ItemVendaDto
+import com.example.controledevendas.features.venda.data.ItemVendaDto
 import com.example.controledevendas.features.produto.data.Produto
 import java.io.File
 
