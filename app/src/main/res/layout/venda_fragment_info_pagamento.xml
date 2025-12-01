@@ -58,74 +58,245 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="0dp"
-                    app:cardCornerRadius="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/gray_F5F5F5"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp">
+                    android:orientation="vertical"
+                    android:paddingBottom="80dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:backgroundTint="@color/gray_F5F5F5"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputData"
-                            android:layout_width="0dp"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/data_venda"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:padding="16dp">
 
-                            app:endIconMode="custom"
-                            app:endIconDrawable="@drawable/icon_calendar"
-                            app:endIconContentDescription="Selecionar data no calendário">
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputData"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/data_venda"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editTextData"
+                                app:endIconMode="custom"
+                                app:endIconDrawable="@drawable/icon_calendar"
+                                app:endIconContentDescription="Selecionar data no calendário">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="date" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputDesconto"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:hint="@string/desconto"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/inputData"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextDesconto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="phone"
+                                    android:digits=" 0123456789.,R$" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:backgroundTint="@color/gray_F5F5F5"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/textViewForma"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/forma_pagamento"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/font_jost"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/menuSuspensoLayoutFormaPagamento"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="date" />
+                                android:hint="@string/selecione_opcao"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textViewForma"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                    android:id="@+id/autoCompleteTextViewFormaPagamento"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none"/>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/inputDesconto"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:hint="@string/desconto"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/inputData"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editTextDesconto"
+                            <TextView
+                                android:id="@+id/textViewStatus"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/status_pagamento"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/font_jost"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/menuSuspensoLayoutFormaPagamento"/>
+
+                            <RadioGroup
+                                android:id="@+id/radioGroupStatusPagamento"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="phone"
-                                android:digits=" 0123456789.,R$" />
+                                android:orientation="vertical"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textViewStatus">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                <RadioButton
+                                    android:id="@+id/radioConcluido"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/concluido"
+                                    android:minHeight="0dp"
+                                    android:fontFamily="@font/font_jost"/>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                                <RadioButton
+                                    android:id="@+id/radioParcialmente"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/parcialmente_pago"
+                                    android:minHeight="0dp"
+                                    android:fontFamily="@font/font_jost"/>
 
-                </com.google.android.material.card.MaterialCardView>
+                                <RadioButton
+                                    android:id="@+id/radioPendente"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/totalmente_pendente"
+                                    android:minHeight="0dp"
+                                    android:fontFamily="@font/font_jost"/>
 
-            </LinearLayout>
+                            </RadioGroup>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/containerParcela"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:backgroundTint="@color/gray_F5F5F5"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:visibility="gone">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/textViewMeio"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/meio_pagamento"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:textSize="16sp"
+                                android:fontFamily="@font/font_jost"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/menuSuspensoLayoutMeioPagamento"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/selecione_opcao"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/textViewMeio"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                    android:id="@+id/autoCompleteTextViewMeioPagamento"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/inputValorPago"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:hint="@string/valor_pago"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/menuSuspensoLayoutMeioPagamento"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextValorPago"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="phone"
+                                    android:digits=" 0123456789.,R$"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

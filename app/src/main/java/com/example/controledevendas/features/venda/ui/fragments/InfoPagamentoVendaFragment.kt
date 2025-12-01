@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.controledevendas.R
+import com.example.controledevendas.core.data.enums.StatusPagamento
 import com.example.controledevendas.databinding.VendaFragmentInfoPagamentoBinding
 import com.example.controledevendas.features.venda.ui.VendaViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -42,6 +44,7 @@ class InfoPagamentoVendaFragment: Fragment() {
         observeViewModel()
         addDateMask()
         addDescontoMask()
+        addValorPagoMask()
         insertListeners()
     }
 
@@ -63,10 +66,65 @@ class InfoPagamentoVendaFragment: Fragment() {
             } catch (e: Exception) {
                 null
             }
-            if(data == null){
-                binding.editTextData.error = "Data inválida"
-            }else{
-                viewModel.saveVenda(data)
+            val formaPagamento = binding.autoCompleteTextViewFormaPagamento.text.toString()
+            var meioPagamento: String? = binding.autoCompleteTextViewMeioPagamento.text.toString()
+            val valorPagoString = binding.editTextValorPago.text.toString().replace(Regex("[^\\d]"), "")
+            val flagValorPago = viewModel.vendaParcelada.value
+            val flagMeioPagamento = viewModel.statusPagamento.value
+            var valorPago: Double? = null
+
+            if(!valorPagoString.isEmpty()){
+                valorPago = valorPagoString.toDouble() / 100.0
+            }
+            else if(flagValorPago){
+                binding.inputValorPago.error = "Informe o valor pago"
+                return@setOnClickListener
+            }
+
+            if(flagMeioPagamento != StatusPagamento.PENDENTE){
+                if(meioPagamento!!.isEmpty()){
+                    binding.autoCompleteTextViewMeioPagamento.error = "Selecione um meio de pagamento"
+                    return@setOnClickListener
+                }
+            }
+
+            if(meioPagamento!!.isEmpty()){
+                meioPagamento = null
+            }
+
+            if(data == null || formaPagamento.isEmpty()){
+                if(data == null) binding.editTextData.error = "Data inválida"
+                if(formaPagamento.isEmpty()) binding.autoCompleteTextViewFormaPagamento.error = "Selecione uma forma de pagamento"
+            } else{
+                val radioChecked = binding.radioGroupStatusPagamento.checkedRadioButtonId
+                when(radioChecked){
+                    R.id.radioConcluido -> viewModel.setStatusPagamento(true)
+                }
+                viewModel.saveVenda(data, formaPagamento, meioPagamento, valorPago)
+            }
+        }
+
+        binding.radioGroupStatusPagamento.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.radioConcluido -> {
+                    binding.containerParcela.visibility = View.VISIBLE
+                    binding.inputValorPago.visibility = View.GONE
+                    viewModel.setStatusPagamento(true)
+                    viewModel.setVendaParcelada(false)
+                }
+
+                R.id.radioParcialmente -> {
+                    binding.containerParcela.visibility = View.VISIBLE
+                    binding.inputValorPago.visibility = View.VISIBLE
+                    viewModel.setStatusPagamento(false)
+                    viewModel.setVendaParcelada(true)
+                }
+
+                R.id.radioPendente -> {
+                    binding.containerParcela.visibility = View.GONE
+                    viewModel.setStatusPagamento(false)
+                    viewModel.setVendaParcelada(false)
+                }
             }
         }
     }
@@ -92,8 +150,36 @@ class InfoPagamentoVendaFragment: Fragment() {
                         }
                     }
                 }
+                launch {
+                    viewModel.formasPagamento.collect {
+                        populateSelectFormasPagamento()
+                    }
+                }
+                launch {
+                    viewModel.meiosPagamento.collect {
+                        populateSelectMeioPagamento()
+                    }
+                }
             }
         }
+    }
+
+    private fun populateSelectFormasPagamento(){
+        val options = viewModel.formasPagamento.value.map {
+            it.descricao
+        }
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, options)
+
+        binding.autoCompleteTextViewFormaPagamento.setAdapter(adapter)
+    }
+
+    private fun populateSelectMeioPagamento(){
+        val options = viewModel.meiosPagamento.value.map{
+            it.descricao
+        }
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, options)
+
+        binding.autoCompleteTextViewMeioPagamento.setAdapter(adapter)
     }
 
     private fun openCalendar() {
@@ -187,7 +273,6 @@ class InfoPagamentoVendaFragment: Fragment() {
                 after: Int
             ) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(editable: Editable?) {
                 if (isUpdating) {
@@ -217,6 +302,47 @@ class InfoPagamentoVendaFragment: Fragment() {
 
                 //atualiza o total de produtos
                 viewModel.setDesconto(valueDouble)
+            }
+        })
+    }
+
+    private fun addValorPagoMask(){
+        binding.editTextValorPago.addTextChangedListener(object : TextWatcher {
+            private val locale = Locale("pt", "BR")
+            private val currencyFormat = NumberFormat.getCurrencyInstance(locale)
+            private var isUpdating = false
+
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(editable: Editable?) {
+                if (isUpdating) {
+                    return
+                }
+                isUpdating = true
+
+                val cleanString = editable.toString().replace(Regex("[^\\d]"), "")
+
+                // Converte a string limpa para BigDecimal para cálculos precisos
+                var parsed = if (cleanString.isEmpty()) {
+                    BigDecimal.ZERO
+                } else {
+                    BigDecimal(cleanString).divide(BigDecimal(100), 2, BigDecimal.ROUND_FLOOR)
+                }
+                var valueDouble = parsed.toDouble()
+
+                if(valueDouble > viewModel.total.value){
+                    parsed = viewModel.total.value.toBigDecimal()
+                }
+                val formatted = currencyFormat.format(parsed)
+                editable?.clear()
+                editable?.append(formatted)
+                isUpdating = false
             }
         })
     }

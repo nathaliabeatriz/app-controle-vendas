@@ -42,4 +42,12 @@
     <string name="data_venda">Data de venda</string>
     <string name="desconto">Aplicar desconto</string>
     <string name="confirmar_venda">Confirmar Venda</string>
+    <string name="selecione_opcao">Selecione uma opção</string>
+    <string name="forma_pagamento">Forma de pagamento</string>
+    <string name="status_pagamento">Status do pagamento</string>
+    <string name="concluido">Concluído</string>
+    <string name="parcialmente_pago">Parcialmente pago</string>
+    <string name="totalmente_pendente">Totalmente pendente</string>
+    <string name="meio_pagamento">Meio de pagamento</string>
+    <string name="valor_pago">Valor pago (R$)</string>
 </resources>
