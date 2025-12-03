@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.cliente.ui.AddClienteFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            app:elevation="0dp"
+            android:layout_marginTop="60dp">
+
+            <include
+                android:id="@+id/include_title"
+                layout="@layout/activity_main_component_title"
+                app:title="@{@string/adicionar_parcela}" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="32dp">
+
+                <TextView
+                    android:id="@+id/textViewMeio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/meio_pagamento"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/font_inter"
+                    android:layout_marginStart="25dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menuSuspensoLayoutMeioPagamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/selecione_opcao"
+                    android:layout_marginStart="25sp"
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textViewMeio"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewMeioPagamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputData"
+                    style="@style/FormInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/data_recebimento"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/menuSuspensoLayoutMeioPagamento"
+
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/icon_calendar"
+                    app:endIconContentDescription="Selecionar data no calendário">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputValor"
+                    style="@style/FormInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/valor_recebido"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputData">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextValor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:digits=" 0123456789.,R$" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/valor_pendente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/inputValor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/valor_pendente"
+                        android:layout_marginStart="25dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/font_inter">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/textViewValorPendente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_exemplo"
+                        android:layout_marginStart="5dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/font_inter">
+                    </TextView>
+
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddParcela"
+                    style="@style/FormInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/green_5f8829"
+                    android:paddingVertical="12dp"
+                    android:text="@string/registrar"
+                    android:textSize="18sp"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/valor_pendente" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

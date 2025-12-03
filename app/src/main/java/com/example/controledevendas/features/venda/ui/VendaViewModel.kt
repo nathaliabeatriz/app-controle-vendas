@@ -158,6 +158,9 @@ class VendaViewModel @Inject constructor(
         viewModelScope.launch {
             try{
                 withContext(Dispatchers.IO){
+                    if(valorPago != null && valorPago == totalComDesconto.value){
+                        setStatusPagamento(true)
+                    }
                     val venda = Venda(idCliente = cliente.value?.idCliente, dataVenda = dataVenda, valorTotal = totalComDesconto.value, valorItens = total.value)
                     val idVenda: Long = vendaRepository.insert(venda)
                     val forma = formaPagamentoRepository.getFormaPagamentoByDescricao(formaPagamento).first()

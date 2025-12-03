@@ -21,7 +21,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/textViewLabelNome"
+                android:id="@+id/textViewLabelDataVenda"
                 style="@style/TextList"
                 android:text="@string/nomeList"
                 app:layout_constraintTop_toTopOf="parent"
@@ -30,31 +30,31 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/textViewNome"
+                android:id="@+id/textViewDataVenda"
                 style="@style/TextList"
                 android:text="@{cliente.nome}"
                 tools:text="@string/nomeExemplo"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelNome"
-                app:layout_constraintStart_toEndOf="@+id/textViewLabelNome"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelDataVenda"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelDataVenda"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/textViewLabelTelefone"
+                android:id="@+id/textViewLabelCliente"
                 style="@style/TextList"
                 android:text="@string/telefoneList"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewLabelNome"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelDataVenda"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/textViewTelefone"
+                android:id="@+id/textViewCliente"
                 style="@style/TextList"
                 android:text="@{cliente.telefone}"
                 tools:text="@string/telefoneExemplo"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelTelefone"
-                app:layout_constraintStart_toEndOf="@+id/textViewLabelTelefone"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelCliente"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelCliente"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textSize="16sp"/>
 

@@ -1,5 +1,6 @@
 package com.example.controledevendas.features.pagamento.data
 
+import com.example.controledevendas.core.data.relations.PagamentoDetalhes
 import javax.inject.Inject
 
 class PagamentoRepository @Inject constructor(private val pagamentoDao: PagamentoDao) {
@@ -13,5 +14,9 @@ class PagamentoRepository @Inject constructor(private val pagamentoDao: Pagament
     }
     suspend fun delete(pagamento: Pagamento) {
         pagamentoDao.delete(pagamento)
+    }
+
+    suspend fun getPagamentoById(idPagamento: Long): PagamentoDetalhes? {
+        return pagamentoDao.getPagamentoById(idPagamento)
     }
 }

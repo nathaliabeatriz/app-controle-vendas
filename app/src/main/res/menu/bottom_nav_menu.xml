@@ -16,7 +16,7 @@
         android:title="Vendas" />
 
     <item
-        android:id="@+id/navigation_payments"
+        android:id="@+id/navigation_list_pagamentos"
         android:icon="@drawable/icon_money"
         android:title="Pagamentos" />
 </menu>

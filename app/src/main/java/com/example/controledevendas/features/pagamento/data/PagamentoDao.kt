@@ -23,4 +23,7 @@ interface PagamentoDao {
     @Query("SELECT * FROM pagamentos ORDER BY idPagamento DESC")
     @Transaction
     fun getAllPagamentosComDetalhes(): Flow<List<PagamentoDetalhes>>
+
+    @Query("SELECT * FROM pagamentos WHERE idPagamento = :idPagamento")
+    suspend fun getPagamentoById(idPagamento: Long): PagamentoDetalhes?
 }

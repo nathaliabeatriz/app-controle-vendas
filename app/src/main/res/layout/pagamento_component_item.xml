@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/gray_F5F5F5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textViewLabelDataVenda"
+                style="@style/TextList"
+                android:text="@string/data_venda_lst"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewDataVenda"
+                style="@style/TextList"
+                tools:text="@string/data_exemplo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelDataVenda"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelDataVenda"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewLabelCliente"
+                style="@style/TextList"
+                android:text="@string/cliente"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelDataVenda"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewCliente"
+                style="@style/TextList"
+                tools:text="@string/nomeExemplo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelCliente"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelCliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewLabelStatus"
+                style="@style/TextList"
+                android:text="@string/status_pagamento_lst"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelCliente"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewStatus"
+                style="@style/TextList"
+                tools:text="@string/pendente"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelStatus"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewLabelForma"
+                style="@style/TextList"
+                android:text="@string/forma_pagamento_lst"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelStatus"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewForma"
+                style="@style/TextList"
+                tools:text="@string/forma_exemplo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelForma"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelForma"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewLabelValorTotal"
+                style="@style/TextList"
+                android:text="@string/valor_total"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelForma"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewValorTotal"
+                style="@style/TextList"
+                tools:text="@string/valor_exemplo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelValorTotal"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelValorTotal"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewLabelValorPendente"
+                style="@style/TextList"
+                android:text="@string/valor_pendente"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLabelValorTotal"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewValorPendente"
+                style="@style/TextList"
+                tools:text="@string/valor_exemplo"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textViewLabelValorPendente"
+                app:layout_constraintStart_toEndOf="@+id/textViewLabelValorPendente"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"/>
+
+            <ImageButton
+                android:id="@+id/buttonOptions"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:scaleType="centerInside"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/opcoes_pagamento"
+                android:src="@drawable/icon_menu_element"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

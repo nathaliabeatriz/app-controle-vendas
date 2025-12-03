@@ -68,6 +68,27 @@
             app:argType="long" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_list_pagamentos"
+        android:name="com.example.controledevendas.features.pagamento.ui.fragments.ListPagamentoFragment"
+        android:label="fragment_list_pagamentos"
+        tools:layout="@layout/pagamento_fragment_list">
+        <action
+            android:id="@+id/action_list_pagamentos_to_update_pagamento"
+            app:destination="@id/navigation_save_parcela"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_save_parcela"
+        android:name="com.example.controledevendas.features.parcela.ui.fragments.SaveParcelaFragment"
+        android:label="fragment_save_parcela"
+        tools:layout="@layout/parcela_fragment_save">
+
+        <argument
+            android:name="idPagamento"
+            app:argType="long"/>
+    </fragment>
+
     <navigation
         android:id="@+id/navigation_make_sale"
         app:startDestination="@id/navigation_venda_select_client">

@@ -42,7 +42,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewNome"
+                    android:id="@+id/textViewDataVenda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{produto.nome}"
@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewLabelNome"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewLabelDataVenda"
                     android:textSize="16sp"/>
 
                 <TextView

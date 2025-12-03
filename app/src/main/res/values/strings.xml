@@ -50,4 +50,20 @@
     <string name="totalmente_pendente">Totalmente pendente</string>
     <string name="meio_pagamento">Meio de pagamento</string>
     <string name="valor_pago">Valor pago (R$)</string>
+    <string name="data_exemplo">30/11/2025</string>
+    <string name="cliente">Cliente:</string>
+    <string name="status_pagamento_lst">Status do pagamento:</string>
+    <string name="data_venda_lst">Data de venda:</string>
+    <string name="pendente">Pendente</string>
+    <string name="forma_pagamento_lst">Forma de pagamento:</string>
+    <string name="valor_total">Valor total:</string>
+    <string name="valor_pendente">Valor pendente:</string>
+    <string name="valor_exemplo">R$ 80,00</string>
+    <string name="forma_exemplo">À prazo</string>
+    <string name="listagem_pagamentos">Listagem de pagamentos</string>
+    <string name="pagamentos">Pagamentos</string>
+    <string name="opcoes_pagamento">Opções de pagamento</string>
+    <string name="adicionar_parcela">Adicionar parcela</string>
+    <string name="data_recebimento">Data de recebimento</string>
+    <string name="valor_recebido">Valor recebido (R$)</string>
 </resources>
